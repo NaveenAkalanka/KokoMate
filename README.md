@@ -7,7 +7,7 @@
 
 KokoMate
 
-Calculate exact installments & merchant fees.
+KokoMate is a mobile-first progressive web application (PWA) and native Android calculator engineered specifically for Sri Lankan shoppers utilizing the "Koko" Buy-Now-Pay-Later payment gateway. It solves the frustration of hidden fees and unclear payment schedules by instantly generating mathematically exact initial cash obligations, monthly recurrence splits, and total merchant surcharges via a highly responsive and native-feeling user interface.
 
 <p>
 <a href="#-features">Features</a> •
@@ -28,24 +28,19 @@ Calculate exact installments & merchant fees.
 
 <br />
 
-KokoMate is a Smart Buy-Now-Pay-Later (BNPL) calculator utility designed specifically for Sri Lankan shoppers to easily compute their exact initial and monthly installment payments avoiding hidden calculations. It is a cross-platform progressive web application (PWA) packaged into a native Android app.
-
 🌟 Features
 
-- 💸 Calculate exact Pay Today and Total Payable amounts
-- 📊 Instantly see the breakdown of the Monthly Installment
-- ⚙️ Choose 3-month or 6-month splits seamlessly
-- 🔢 Native numeric keyboard decimal entry support for mobile
-- 🧮 Automatic Merchant Surcharge additions (8%, 10%, 12%, or Custom)
-- 📱 Progressive Web App (PWA) configured
-- 🤖 Native Android App packaging via Capacitor
+- 📱 Single-screen utility for exact BNPL installment breakdowns across various merchant rates.
+- 📐 Responsive Mobile Validation layout fitting perfectly to fragmented smartphone constraints via dynamic flex algorithms.
+- 🔢 Native Keyboards cleanly invoked on Mobile Browsers restricting bad float validation lockups.
+- ⚙️ Offline capability provided natively via PWA + Android App WebView via Capacitor bridge.
 
 🛠️ Tech Stack
 
-- React / Next.js
-- Tailwind CSS
-- TypeScript
-- CapacitorJS
+- React 19 / Next.js 16 (Webpack mode)
+- Tailwind CSS v4
+- Capacitor Platform Bridging (Android WebView)
+- Next-PWA (Local memory isolated logic engine)
 
 🚀 Getting Started
 
