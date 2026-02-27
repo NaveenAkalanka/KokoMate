@@ -13,7 +13,7 @@ KokoMate is a mobile-first progressive web application (PWA) and native Android 
 <a href="#-features">Features</a> •
 <a href="#-tech-stack">Tech Stack</a> •
 <a href="#-getting-started">Getting Started</a> •
-<a href="kokomate-android/android/app/release/KokoMate.apk">Download Android APK</a>
+<a href="https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/KokoMate.apk">Download Android APK</a>
 </p>
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
