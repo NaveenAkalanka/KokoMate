@@ -1,0 +1,21 @@
+{
+  "name": "KokoMate - BNPL Calculator",
+  "short_name": "KokoMate",
+  "description": "A Mobile-First BNPL Calculator Web App for Sri Lankan consumers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0E27",
+  "theme_color": "#FF007A",
+  "icons": [
+    {
+      "src": "/logo_icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/logo_icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
