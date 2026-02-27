@@ -10,9 +10,9 @@ KokoMate
 KokoMate is a mobile-first progressive web application (PWA) and native Android calculator engineered specifically for Sri Lankan shoppers utilizing the "Koko" Buy-Now-Pay-Later payment gateway. It solves the frustration of hidden fees and unclear payment schedules by instantly generating mathematically exact initial cash obligations, monthly recurrence splits, and total merchant surcharges via a highly responsive and native-feeling user interface.
 
 <p>
-<a href="#-features">Features</a> •
-<a href="#-tech-stack">Tech Stack</a> •
-<a href="#-getting-started">Getting Started</a> •
+<a href="#features">Features</a> •
+<a href="#tech-stack">Tech Stack</a> •
+<a href="#getting-started">Getting Started</a> •
 <a href="https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/KokoMate.apk">Download Android APK</a>
 </p>
 
@@ -28,21 +28,21 @@ KokoMate is a mobile-first progressive web application (PWA) and native Android 
 
 <br />
 
-🌟 Features
+<h2 id="features">🌟 Features</h2>
 
 - 📱 Single-screen utility for exact BNPL installment breakdowns across various merchant rates.
 - 📐 Responsive Mobile Validation layout fitting perfectly to fragmented smartphone constraints via dynamic flex algorithms.
 - 🔢 Native Keyboards cleanly invoked on Mobile Browsers restricting bad float validation lockups.
 - ⚙️ Offline capability provided natively via PWA + Android App WebView via Capacitor bridge.
 
-🛠️ Tech Stack
+<h2 id="tech-stack">🛠️ Tech Stack</h2>
 
 - React 19 / Next.js 16 (Webpack mode)
 - Tailwind CSS v4
 - Capacitor Platform Bridging (Android WebView)
 - Next-PWA (Local memory isolated logic engine)
 
-🚀 Getting Started
+<h2 id="getting-started">🚀 Getting Started</h2>
 
 Clone the repository
 
