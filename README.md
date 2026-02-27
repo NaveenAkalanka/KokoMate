@@ -13,7 +13,7 @@ Calculate exact installments & merchant fees.
 <a href="#-features">Features</a> •
 <a href="#-tech-stack">Tech Stack</a> •
 <a href="#-getting-started">Getting Started</a> •
-<a href="#-download">Download</a>
+<a href="kokomate-android/android/app/release/KokoMate.apk">Download Android APK</a>
 </p>
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)

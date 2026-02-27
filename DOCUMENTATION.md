@@ -8,7 +8,7 @@ KokoMate: Engineering & Architecture Report
 "The Elevator Pitch"
 KokoMate is a mobile-first progressive web application (PWA) and native Android calculator engineered specifically for Sri Lankan shoppers utilizing the "Koko" Buy-Now-Pay-Later payment gateway. It solves the frustration of hidden fees and unclear payment schedules by instantly generating mathematically exact initial cash obligations, monthly recurrence splits, and total merchant surcharges via a highly responsive and native-feeling user interface.
 
-📥 Downloads: 🤖 Android | 📦 Source
+📥 Downloads: [🤖 Android APK (kokomate-android/android/app/release/KokoMate.apk)](kokomate-android/android/app/release/KokoMate.apk) | 📦 Source
 
 2. Objective & Mission
 
