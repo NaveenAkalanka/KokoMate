@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Allow cleartext only for Capacitor's local dev server (localhost) -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">buymeacoffee.com</domain>
+        <domain includeSubdomains="true">github.com</domain>
+    </domain-config>
+
+    <!-- Capacitor local server requires localhost cleartext for asset serving -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+
+    <!-- Default: block all other cleartext (HTTPS enforced) -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

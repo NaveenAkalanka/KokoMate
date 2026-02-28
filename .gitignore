@@ -50,3 +50,25 @@ execution/
 .antigravity*
 *.bak.md
 APPLICATION_SUMMARY.md
+
+# ── SECURITY: Credentials & Keys ──────────────────────
+# Never commit signing keys or Firebase/Google config
+*.keystore
+*.jks
+*.p12
+*.pfx
+google-services.json
+GoogleService-Info.plist
+# Keystore properties (contains signing passwords)
+kokomate-android/android/keystore.properties
+kokomate-android/android/release.keystore
+
+# ── Android Build Artifacts ────────────────────────────
+# Exclude local Gradle caches and build intermediates
+kokomate-android/android/.gradle/
+kokomate-android/android/app/build/
+kokomate-android/android/build/
+kokomate-android/android/local.properties
+# Exclude debug APKs — only release APK (KokoMate.apk) should be tracked
+kokomate-android/android/app/release/app-debug*
+kokomate-android/android/app/debug/
