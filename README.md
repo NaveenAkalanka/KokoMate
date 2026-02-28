@@ -1,94 +1,134 @@
 <div align="center">
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="public/logo_full.svg">
-<source media="(prefers-color-scheme: light)" srcset="public/logo_full.svg">
-<img alt="KokoMate Logo" src="public/logo_full.svg" width="120" height="120">
-</picture>
 
-KokoMate
+<img src="public/logo_icon.svg" alt="KokoMate Icon" width="100" height="100" />
 
-KokoMate is a mobile-first progressive web application (PWA) and native Android calculator engineered specifically for Sri Lankan shoppers utilizing the "Koko" Buy-Now-Pay-Later payment gateway. It solves the frustration of hidden fees and unclear payment schedules by instantly generating mathematically exact initial cash obligations, monthly recurrence splits, and total merchant surcharges via a highly responsive and native-feeling user interface.
+<img src="public/logo_full.svg" alt="KokoMate Full Logo" width="260" />
+
+**The exact installment & merchant fee calculator for Sri Lankan Koko shoppers.**
 
 <p>
-<a href="#features">Features</a> •
-<a href="#tech-stack">Tech Stack</a> •
-<a href="#getting-started">Getting Started</a> •
-<a href="https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/KokoMate.apk">Download Android APK</a>
+  <a href="#-features">Features</a> •
+  <a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/app-release-unsigned.apk">⬇ Download APK</a>
 </p>
 
-![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-%23000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-19-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Capacitor](https://img.shields.io/badge/Capacitor-Android-%2300C4FF?style=for-the-badge&logo=capacitor&logoColor=white)
 ![License](https://img.shields.io/badge/License-CC_BY_NC_SA_4.0-orange?style=for-the-badge)
 
 <br />
-<a href="https://www.buymeacoffee.com/naveenakalanka" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+<a href="https://www.buymeacoffee.com/naveenakalanka" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Support the Project" style="height:60px;width:217px;" />
+</a>
 
 </div>
 
-<br />
+---
 
-<h2 id="features">🌟 Features</h2>
+## 📱 Features
 
-- 📱 Single-screen utility for exact BNPL installment breakdowns across various merchant rates.
-- 📐 Responsive Mobile Validation layout fitting perfectly to fragmented smartphone constraints via dynamic flex algorithms.
-- 🔢 Native Keyboards cleanly invoked on Mobile Browsers restricting bad float validation lockups.
-- ⚙️ Offline capability provided natively via PWA + Android App WebView via Capacitor bridge.
+| Feature | Description |
+|---|---|
+| ⚡ Instant Calculations | Real-time installment & surcharge breakdown as you type |
+| 🔢 Smart Input | `inputMode="decimal"` triggers native number pad without input lockup |
+| 🎛️ Flexible Rates | Preset merchant rates (8%, 10%, 12%) plus custom rate input |
+| 📅 3 or 6 Months | Toggle split periods with a single switch |
+| 🖥️ Fits Any Screen | Responsive layout that never requires scrolling |
+| 📴 Offline Ready | PWA + Capacitor service worker caching for zero connectivity use |
+| 📳 Haptic Feedback | Native tactile feedback on every button and input |
+| 🔙 Native Navigation | Android hardware back button & swipe gestures fully integrated |
 
-<h2 id="tech-stack">🛠️ Tech Stack</h2>
+---
 
-- React 19 / Next.js 16 (Webpack mode)
-- Tailwind CSS v4
-- Capacitor Platform Bridging (Android WebView)
-- Next-PWA (Local memory isolated logic engine)
+## ⬇️ Download
 
-<h2 id="getting-started">🚀 Getting Started</h2>
+Get the latest Android APK directly:
 
-Clone the repository
+**[⬇ Download KokoMate APK](https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/app-release-unsigned.apk)**
+
+> Requires Android 7.0+ · Enable "Install from Unknown Sources" in your device settings.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (Static Export, Webpack mode) |
+| UI | React 19 + shadcn/ui + Tailwind CSS v4 |
+| Native Bridge | Capacitor 7 (Android WebView) |
+| PWA | next-pwa + Workbox Service Workers |
+| Haptics | @capacitor/haptics |
+| Navigation | @capacitor/app (backButton listener) |
+| Icons | lucide-react |
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# 1. Clone
 git clone https://github.com/NaveenAkalanka/KokoMate.git
 cd KokoMate
-```
 
-Install dependencies
-
-```bash
+# 2. Install
 npm install
-```
 
-Run the development server
-
-```bash
+# 3. Run dev server
 npm run dev
 ```
 
-📄 License
+### Build Android APK
 
-This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License.
+```bash
+# Build static export
+npm run build
 
-You are free to:
+# Sync to Android
+cd kokomate-android
+npx cap sync android
 
-Share — Copy and redistribute the material in any medium or format.
+# Open in Android Studio or build directly
+cd android
+./gradlew assembleRelease
+```
 
-Adapt — Remix, transform, and build upon the material.
+---
 
-Under the following terms:
+## 📐 How the Calculation Works
 
-Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+```
+Principal        = Store Price − Cash Down Payment
+Monthly Install  = ((Principal × Rate%) / Months) + (Principal / Months)
+Total Surcharge  = Principal × Rate%
+Total Payable    = Store Price + Total Surcharge
+Pay Today        = Cash Down Payment + Monthly Installment (first payment)
+```
 
-NonCommercial — You may not use the material for commercial purposes.
+---
 
-ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+## 📄 License
 
-See LICENSE for the full text.
+This project is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)** License.
 
-<br />
+- ✅ Share & Adapt freely with attribution
+- ❌ No commercial use
+- 🔄 Derivatives must use the same license
+
+See [LICENSE](LICENSE) for the full text.
+
+> *KokoMate is not affiliated with or endorsed by Koko (Zip Co). All calculations are approximations based on publicly known merchant surcharge rates.*
+
+---
 
 <div align="center">
-<p class="text-sm text-gray-500">
-Designed & Developed with ❤️ by <a href="https://github.com/NaveenAkalanka">Naveen Akalanka</a>
-<br />
-<a href="https://www.buymeacoffee.com/naveenakalanka">Support the Project ☕</a>
-</p>
+
+Designed & Developed with ❤️ by [Naveen Akalanka](https://github.com/NaveenAkalanka)
+
+[☕ Support the Project](https://www.buymeacoffee.com/naveenakalanka)
+
 </div>
