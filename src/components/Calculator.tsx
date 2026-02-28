@@ -91,68 +91,78 @@ export default function Calculator() {
     const activeRateStr = merchantRate === "custom" ? `${customRate || 0}%` : `${merchantRate}%`;
 
     return (
-        <div className="w-full flex-1 max-w-md mx-auto flex flex-col justify-between h-full pb-2 pt-2 min-h-min relative overflow-hidden">
+        <div className="w-full flex-1 max-w-md mx-auto flex flex-col justify-between h-full pb-2 pt-2 min-h-min relative">
 
-            {/* ── About Panel (slides in from right) ── */}
-            <div
-                className={`absolute inset-0 z-50 flex flex-col bg-zinc-50 dark:bg-[#0A0E27] transition-transform duration-300 ease-in-out ${showAbout ? "translate-x-0" : "translate-x-full"
-                    }`}
-            >
-                {/* About Header */}
-                <header className="flex items-center px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 flex-none">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => closeAbout()}
-                        className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border"
-                    >
-                        <ChevronLeft className="h-5 w-5" />
-                    </Button>
-                    <h1 className="flex-1 text-center font-bold text-base -ml-10">About KokoMate</h1>
-                </header>
+            {/* ── About Modal Popup ── */}
+            {showAbout && (
+                <div className="absolute inset-0 z-50 flex flex-col justify-end">
+                    {/* Backdrop — tap to dismiss */}
+                    <div
+                        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                        onClick={closeAbout}
+                    />
 
-                {/* About Content */}
-                <main className="flex-1 flex flex-col items-center justify-center p-6 text-center gap-5 overflow-y-auto">
-                    <div className="flex flex-col items-center gap-3">
-                        <div className="bg-white rounded-[1.5rem] shadow-sm border border-zinc-100 p-4 flex items-center justify-center">
-                            <Image src="/logo_icon.svg" width={64} height={64} alt="KokoMate Icon" className="drop-shadow-md" />
+                    {/* Bottom Sheet Card */}
+                    <div className="relative z-10 bg-white dark:bg-zinc-900 rounded-t-3xl shadow-2xl animate-slideup px-6 pt-5 pb-8 flex flex-col gap-4">
+                        {/* Handle + Close */}
+                        <div className="flex items-center justify-between mb-1">
+                            <div className="w-10 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 mx-auto absolute left-1/2 -translate-x-1/2 top-3" />
+                            <p className="font-bold text-base text-foreground">About KokoMate</p>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={closeAbout}
+                                className="rounded-full h-8 w-8 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200"
+                            >
+                                <span className="text-lg leading-none text-zinc-500">✕</span>
+                            </Button>
                         </div>
-                        <Image src="/logo_full.svg" width={150} height={28} alt="KokoMate Full Logo" className="mt-1" />
-                        <p className="text-sm text-muted-foreground font-medium max-w-[260px] leading-relaxed">
-                            The exact installment &amp; merchant fee calculator.<br />Built for Sri Lankan shoppers.
-                        </p>
-                        <p className="text-[11px] text-zinc-400 italic">Not affiliated with Koko.</p>
-                    </div>
 
-                    <div className="w-full h-px bg-zinc-200 dark:bg-zinc-800" />
+                        {/* Logo Row */}
+                        <div className="flex items-center gap-3">
+                            <div className="bg-white rounded-2xl shadow border border-zinc-100 p-2.5 flex-none">
+                                <Image src="/logo_icon.svg" width={44} height={44} alt="KokoMate Icon" />
+                            </div>
+                            <div>
+                                <Image src="/logo_full.svg" width={120} height={22} alt="KokoMate Full Logo" />
+                                <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
+                                    Installment &amp; merchant fee calculator<br />for Sri Lankan shoppers.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div className="flex flex-col items-center gap-2">
-                        <p className="text-sm text-muted-foreground">Designed &amp; Developed with ❤️ by</p>
+                        <div className="h-px bg-zinc-100 dark:bg-zinc-800" />
+
+                        {/* Credits */}
+                        <div className="flex flex-col gap-1">
+                            <p className="text-xs text-muted-foreground">Designed &amp; Developed by</p>
+                            <a
+                                href="https://github.com/NaveenAkalanka"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => triggerHaptic()}
+                                className="text-primary font-bold text-base flex items-center gap-1.5 hover:underline"
+                            >
+                                Naveen Akalanka
+                                <ExternalLink className="h-3 w-3 opacity-60" />
+                            </a>
+                            <p className="text-[10px] text-muted-foreground">CC BY-NC-SA 4.0 · Not affiliated with Koko.</p>
+                        </div>
+
+                        {/* Buy me a coffee */}
                         <a
-                            href="https://github.com/NaveenAkalanka"
+                            href="https://www.buymeacoffee.com/naveenakalanka"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-primary font-bold text-lg flex items-center gap-1.5 hover:underline"
                             onClick={() => triggerHaptic()}
+                            className="flex items-center justify-center gap-2 py-3 bg-[#FFDD00] text-black rounded-xl font-bold shadow active:scale-95 transition-all"
                         >
-                            Naveen Akalanka
-                            <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+                            <span className="text-lg">☕</span>
+                            <span className="text-sm">Buy me a coffee</span>
                         </a>
-                        <p className="text-xs text-muted-foreground mt-0.5">License: CC BY-NC-SA 4.0</p>
                     </div>
-
-                    <a
-                        href="https://www.buymeacoffee.com/naveenakalanka"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => triggerHaptic()}
-                        className="flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#FFDD00] text-black rounded-xl font-bold hover:opacity-90 transition-all shadow-md active:scale-95"
-                    >
-                        <span className="text-xl">☕</span>
-                        <span className="text-base">Buy me a coffee</span>
-                    </a>
-                </main>
-            </div>
+                </div>
+            )}
 
             {/* ── Main Calculator ── */}
             {/* Top: Input Section */}
@@ -324,6 +334,6 @@ export default function Calculator() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
+        </div >
     );
 }
