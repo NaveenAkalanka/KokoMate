@@ -70,7 +70,10 @@ export default function Calculator() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => { triggerHaptic(); setShowAbout(false); }}
+                        onClick={() => {
+                            setShowAbout(false);
+                            triggerHaptic();
+                        }}
                         className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border"
                     >
                         <ChevronLeft className="h-5 w-5" />
