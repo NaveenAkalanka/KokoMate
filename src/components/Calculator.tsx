@@ -11,7 +11,6 @@ import { calculateInstallments } from "../lib/calculator";
 import Image from "next/image";
 import { Info, ChevronLeft, ExternalLink } from "lucide-react";
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
-import { App } from '@capacitor/app';
 
 export default function Calculator() {
     const [storePrice, setStorePrice] = useState<string>("");
@@ -37,20 +36,33 @@ export default function Calculator() {
         }
     };
 
-    // Handle Android hardware back button & swipe-back gesture
+    // Sync browser history with the About panel
+    // When panel opens → push a history entry so Android back/swipe fires popstate
+    // When panel closes via popstate → we just update state (no extra history push)
     useEffect(() => {
-        const backHandler = App.addListener('backButton', () => {
-            if (showAbout) {
-                setShowAbout(false);
-            } else {
-                App.exitApp();
-            }
-        });
-
-        return () => {
-            backHandler.then((h) => h.remove());
+        const onPopState = () => {
+            // Android back / swipe-back fired, close the panel
+            setShowAbout(false);
         };
-    }, [showAbout]);
+        window.addEventListener('popstate', onPopState);
+        return () => window.removeEventListener('popstate', onPopState);
+    }, []);
+
+    const openAbout = () => {
+        triggerHaptic();
+        // Push a fake history entry so the browser/OS back gesture pops it
+        window.history.pushState({ panel: 'about' }, '', '#about');
+        setShowAbout(true);
+    };
+
+    const closeAbout = () => {
+        triggerHaptic();
+        setShowAbout(false);
+        // If the history entry we pushed is still there, go back to remove it
+        if (window.location.hash === '#about') {
+            window.history.back();
+        }
+    };
 
     useEffect(() => {
         const price = parseFloat(storePrice) || 0;
@@ -86,10 +98,7 @@ export default function Calculator() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => {
-                            setShowAbout(false);
-                            triggerHaptic();
-                        }}
+                        onClick={() => closeAbout()}
                         className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border"
                     >
                         <ChevronLeft className="h-5 w-5" />
@@ -156,7 +165,7 @@ export default function Calculator() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => { triggerHaptic(); setShowAbout(true); }}
+                        onClick={() => openAbout()}
                         className="rounded-full text-zinc-400 hover:text-zinc-600 transition-colors bg-zinc-50 dark:bg-zinc-900 border border-transparent hover:bg-zinc-100 p-1 ml-2"
                     >
                         <Info className="h-5 w-5" />
