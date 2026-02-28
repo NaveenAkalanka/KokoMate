@@ -11,6 +11,7 @@ import { calculateInstallments } from "../lib/calculator";
 import Image from "next/image";
 import { Info, ChevronLeft, ExternalLink } from "lucide-react";
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { App } from '@capacitor/app';
 
 export default function Calculator() {
     const [storePrice, setStorePrice] = useState<string>("");
@@ -35,6 +36,21 @@ export default function Calculator() {
             // gracefully ignore on platforms without haptic APIs
         }
     };
+
+    // Handle Android hardware back button & swipe-back gesture
+    useEffect(() => {
+        const backHandler = App.addListener('backButton', () => {
+            if (showAbout) {
+                setShowAbout(false);
+            } else {
+                App.exitApp();
+            }
+        });
+
+        return () => {
+            backHandler.then((h) => h.remove());
+        };
+    }, [showAbout]);
 
     useEffect(() => {
         const price = parseFloat(storePrice) || 0;
