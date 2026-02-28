@@ -47,7 +47,7 @@ export default function Calculator() {
     const activeRateStr = merchantRate === "custom" ? `${customRate || 0}%` : `${merchantRate}%`;
 
     return (
-        <div className="w-full flex-1 max-w-md mx-auto flex flex-col my-auto gap-2 pb-2 pt-2 min-h-min">
+        <div className="w-full flex-1 max-w-md mx-auto flex flex-col justify-between h-full pb-2 pt-2 min-h-min">
             {/* Top: Input Section */}
             <Card className="border-border shadow-sm flex-none">
                 <CardHeader className="pb-2 pt-3 flex flex-row items-center justify-between border-b mx-4 px-0 mb-3">
@@ -144,7 +144,7 @@ export default function Calculator() {
             </Card>
 
             {/* Bottom Section */}
-            <div className="flex-none flex flex-col">
+            <div className="flex-none flex flex-col mt-auto pt-4">
                 {/* Results Section */}
                 <Card className="bg-foreground text-card shadow-xl overflow-hidden border-none relative flex-none">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-bl-full -mr-10 -mt-10 blur-xl pointer-events-none" />
