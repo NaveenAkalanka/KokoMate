@@ -10,7 +10,7 @@
   <a href="#-features">Features</a> •
   <a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •
   <a href="#-getting-started">Getting Started</a> •
-  <a href="https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/app-release-unsigned.apk">⬇ Download APK</a>
+  <a href="https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/KokoMate.apk">⬇ Download APK</a>
 </p>
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-%23000000?style=for-the-badge&logo=next.js&logoColor=white)
@@ -48,7 +48,7 @@
 
 Get the latest Android APK directly:
 
-**[⬇ Download KokoMate APK](https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/app-release-unsigned.apk)**
+**[⬇ Download KokoMate APK](https://github.com/NaveenAkalanka/KokoMate/raw/master/kokomate-android/android/app/release/KokoMate.apk)**
 
 > Requires Android 7.0+ · Enable "Install from Unknown Sources" in your device settings.
 
