@@ -21,7 +21,7 @@ export default function About() {
                 <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => { window.location.href = "/"; }}
+                    onClick={() => { window.location.href = "../index.html"; }}
                     className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border"
                 >
                     <ChevronLeft className="h-5 w-5" />

@@ -75,7 +75,7 @@ export default function Calculator() {
                         size="icon"
                         onClick={() => {
                             triggerHaptic();
-                            window.location.href = "/about";
+                            window.location.href = "about/index.html";
                         }}
                         className="rounded-full text-zinc-400 hover:text-zinc-600 transition-colors bg-zinc-50 dark:bg-zinc-900 border border-transparent hover:bg-zinc-100 p-1 ml-2"
                     >
