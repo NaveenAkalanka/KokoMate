@@ -9,6 +9,8 @@ import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
 import { calculateInstallments } from "../lib/calculator";
 import Image from "next/image";
+import Link from "next/link";
+import { Info } from "lucide-react";
 
 export default function Calculator() {
     const [storePrice, setStorePrice] = useState<string>("");
@@ -60,6 +62,11 @@ export default function Calculator() {
                             <p className="text-[9px] text-muted-foreground ml-1.5 mt-0.5">Calculate exact installments & merchant fees.</p>
                         </div>
                     </div>
+                    <Link href="/about">
+                        <Button variant="ghost" size="icon" className="rounded-full text-zinc-400 hover:text-zinc-600 transition-colors bg-zinc-50 dark:bg-zinc-900 border border-transparent hover:bg-zinc-100 p-1 ml-2">
+                            <Info className="h-5 w-5" />
+                        </Button>
+                    </Link>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4 pb-6 px-5">
                     <div className="flex gap-4">
