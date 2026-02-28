@@ -20,17 +20,10 @@ export default function Calculator() {
     const [customRate, setCustomRate] = useState<string>("");
     const [months, setMonths] = useState<number>(3);
     const [showAbout, setShowAbout] = useState(false);
-    // Ref so the Capacitor backButton listener always reads the latest state
-    // without needing to re-register the listener on every state change
+
+    // useRef tracks showAbout for the Capacitor backButton listener
+    // (listener is registered once so can't close over changing state)
     const showAboutRef = useRef(false);
-
-    const setAbout = (val: boolean) => {
-        showAboutRef.current = val;
-        setShowAbout(val);
-    };
-
-    const openAbout = () => { triggerHaptic(); setAbout(true); };
-    const closeAbout = () => { triggerHaptic(); setAbout(false); };
 
     const [result, setResult] = useState({
         payToday: 0,
@@ -40,28 +33,41 @@ export default function Calculator() {
         totalPayable: 0,
     });
 
+    // ── Must be declared BEFORE openAbout/closeAbout ──
     const triggerHaptic = async () => {
         try {
             await Haptics.impact({ style: ImpactStyle.Light });
-        } catch (e) {
-            // gracefully ignore on platforms without haptic APIs
-        }
+        } catch (e) { /* ignore on platforms without haptics */ }
     };
 
-    // Capacitor backButton intercepts Android hardware back + swipe gesture
-    // before the browser ever sees it — must use App.addListener, not popstate
+    const openAbout = () => {
+        showAboutRef.current = true;
+        setShowAbout(true);
+        triggerHaptic();
+    };
+
+    const closeAbout = () => {
+        showAboutRef.current = false;
+        setShowAbout(false);
+        triggerHaptic();
+    };
+
+    // Capacitor intercepts Android hardware back + swipe gesture
+    // BEFORE the browser gets it — must use App.addListener, not popstate
     useEffect(() => {
-        let handle: any;
+        let handle: { remove: () => void } | null = null;
+
         App.addListener('backButton', () => {
             if (showAboutRef.current) {
-                setAbout(false);
+                showAboutRef.current = false;
+                setShowAbout(false);
             } else {
                 App.exitApp();
             }
         }).then((h) => { handle = h; });
 
         return () => { handle?.remove(); };
-    }, []); // register only once — reads live state via ref
+    }, []); // registered once; reads live value from showAboutRef
 
     useEffect(() => {
         const price = parseFloat(storePrice) || 0;
