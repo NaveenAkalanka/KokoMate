@@ -1,10 +1,14 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
+    const router = useRouter();
+
     return (
         <div
             className="h-[100dvh] w-full bg-zinc-50 dark:bg-[#0A0E27] text-foreground flex flex-col selection:bg-primary/20"
@@ -16,11 +20,14 @@ export default function About() {
             }}
         >
             <header className="flex items-center p-4 border-b border-zinc-200 dark:border-zinc-800">
-                <Link href="/">
-                    <Button variant="ghost" size="icon" className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border">
-                        <ChevronLeft className="h-5 w-5" />
-                    </Button>
-                </Link>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => router.back()}
+                    className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border"
+                >
+                    <ChevronLeft className="h-5 w-5" />
+                </Button>
                 <h1 className="flex-1 text-center font-bold text-lg -ml-10">About KokoMate</h1>
             </header>
 
