@@ -17,6 +17,8 @@ export const viewport: Viewport = {
   themeColor: "#FF007A",
 }
 
+import StatusBarEnforcer from "@/components/StatusBarEnforcer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased bg-background text-foreground`}
       >
+        <StatusBarEnforcer />
         {children}
       </body>
     </html>

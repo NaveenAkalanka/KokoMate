@@ -4,12 +4,7 @@ const config: CapacitorConfig = {
   appId: 'com.kokomate.app',
   appName: 'KokoMate',
   webDir: '../out',
-  plugins: {
-    StatusBar: {
-      overlaysWebView: true,
-      style: 'LIGHT'
-    }
-  }
+  plugins: {}
 };
 
 export default config;
