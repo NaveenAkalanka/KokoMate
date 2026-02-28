@@ -9,15 +9,14 @@ export default function StatusBarEnforcer() {
             try {
                 const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-                await StatusBar.setOverlaysWebView({ overlay: false });
+                // Keep webview overlaid so the app stretches edge-to-edge under the selfie camera
+                await StatusBar.setOverlaysWebView({ overlay: true });
 
                 if (isDark) {
-                    // Dark background, White text
-                    await StatusBar.setBackgroundColor({ color: "#0A0E27" });
+                    // Dark theme -> Style.Dark (provides LIGHT text for dark backgrounds in Capacitor)
                     await StatusBar.setStyle({ style: Style.Dark });
                 } else {
-                    // Light background, Dark text
-                    await StatusBar.setBackgroundColor({ color: "#FAFAFA" }); // zinc-50
+                    // Light theme -> Style.Light (provides DARK text for light backgrounds in Capacitor)
                     await StatusBar.setStyle({ style: Style.Light });
                 }
             } catch (err) {
