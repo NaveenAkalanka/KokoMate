@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -11,6 +11,7 @@ import { calculateInstallments } from "../lib/calculator";
 import Image from "next/image";
 import { Info, ChevronLeft, ExternalLink } from "lucide-react";
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { App } from '@capacitor/app';
 
 export default function Calculator() {
     const [storePrice, setStorePrice] = useState<string>("");
@@ -19,6 +20,17 @@ export default function Calculator() {
     const [customRate, setCustomRate] = useState<string>("");
     const [months, setMonths] = useState<number>(3);
     const [showAbout, setShowAbout] = useState(false);
+    // Ref so the Capacitor backButton listener always reads the latest state
+    // without needing to re-register the listener on every state change
+    const showAboutRef = useRef(false);
+
+    const setAbout = (val: boolean) => {
+        showAboutRef.current = val;
+        setShowAbout(val);
+    };
+
+    const openAbout = () => { triggerHaptic(); setAbout(true); };
+    const closeAbout = () => { triggerHaptic(); setAbout(false); };
 
     const [result, setResult] = useState({
         payToday: 0,
@@ -36,33 +48,20 @@ export default function Calculator() {
         }
     };
 
-    // Sync browser history with the About panel
-    // When panel opens → push a history entry so Android back/swipe fires popstate
-    // When panel closes via popstate → we just update state (no extra history push)
+    // Capacitor backButton intercepts Android hardware back + swipe gesture
+    // before the browser ever sees it — must use App.addListener, not popstate
     useEffect(() => {
-        const onPopState = () => {
-            // Android back / swipe-back fired, close the panel
-            setShowAbout(false);
-        };
-        window.addEventListener('popstate', onPopState);
-        return () => window.removeEventListener('popstate', onPopState);
-    }, []);
+        let handle: any;
+        App.addListener('backButton', () => {
+            if (showAboutRef.current) {
+                setAbout(false);
+            } else {
+                App.exitApp();
+            }
+        }).then((h) => { handle = h; });
 
-    const openAbout = () => {
-        triggerHaptic();
-        // Push a fake history entry so the browser/OS back gesture pops it
-        window.history.pushState({ panel: 'about' }, '', '#about');
-        setShowAbout(true);
-    };
-
-    const closeAbout = () => {
-        triggerHaptic();
-        setShowAbout(false);
-        // If the history entry we pushed is still there, go back to remove it
-        if (window.location.hash === '#about') {
-            window.history.back();
-        }
-    };
+        return () => { handle?.remove(); };
+    }, []); // register only once — reads live state via ref
 
     useEffect(() => {
         const price = parseFloat(storePrice) || 0;
