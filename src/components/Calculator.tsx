@@ -9,8 +9,8 @@ import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
 import { calculateInstallments } from "../lib/calculator";
 import Image from "next/image";
-import Link from "next/link";
 import { Info } from "lucide-react";
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 export default function Calculator() {
     const [storePrice, setStorePrice] = useState<string>("");
@@ -26,6 +26,14 @@ export default function Calculator() {
         totalSurcharge: 0,
         totalPayable: 0,
     });
+
+    const triggerHaptic = async () => {
+        try {
+            await Haptics.impact({ style: ImpactStyle.Light });
+        } catch (e) {
+            // gracefully ignore on platforms without haptic APIs
+        }
+    };
 
     useEffect(() => {
         const price = parseFloat(storePrice) || 0;
@@ -62,11 +70,17 @@ export default function Calculator() {
                             <p className="text-[9px] text-muted-foreground ml-1.5 mt-0.5">Calculate exact installments & merchant fees.</p>
                         </div>
                     </div>
-                    <Link href="/about">
-                        <Button variant="ghost" size="icon" className="rounded-full text-zinc-400 hover:text-zinc-600 transition-colors bg-zinc-50 dark:bg-zinc-900 border border-transparent hover:bg-zinc-100 p-1 ml-2">
-                            <Info className="h-5 w-5" />
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => {
+                            triggerHaptic();
+                            window.location.href = "/about";
+                        }}
+                        className="rounded-full text-zinc-400 hover:text-zinc-600 transition-colors bg-zinc-50 dark:bg-zinc-900 border border-transparent hover:bg-zinc-100 p-1 ml-2"
+                    >
+                        <Info className="h-5 w-5" />
+                    </Button>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4 pb-6 px-5">
                     <div className="flex gap-4">
@@ -80,7 +94,10 @@ export default function Calculator() {
                                 placeholder="15000"
                                 className="h-10 text-sm px-3 bg-gray-50 dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 focus:ring-primary"
                                 value={storePrice}
-                                onChange={(e) => setStorePrice(e.target.value)}
+                                onChange={(e) => {
+                                    triggerHaptic();
+                                    setStorePrice(e.target.value);
+                                }}
                             />
                         </div>
 
@@ -94,7 +111,10 @@ export default function Calculator() {
                                 placeholder="5000"
                                 className="h-10 text-sm px-3 bg-gray-50 dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 focus:ring-primary"
                                 value={cashDownPayment}
-                                onChange={(e) => setCashDownPayment(e.target.value)}
+                                onChange={(e) => {
+                                    triggerHaptic();
+                                    setCashDownPayment(e.target.value);
+                                }}
                             />
                         </div>
                     </div>
@@ -106,7 +126,10 @@ export default function Calculator() {
                             type="single"
                             value={merchantRate}
                             onValueChange={(val) => {
-                                if (val) setMerchantRate(val);
+                                if (val) {
+                                    triggerHaptic();
+                                    setMerchantRate(val);
+                                }
                             }}
                             className="justify-between gap-2"
                         >
@@ -128,7 +151,10 @@ export default function Calculator() {
                                 placeholder="Enter custom %"
                                 className="h-10 mt-2 text-xs px-3 bg-gray-50 dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 focus:ring-primary"
                                 value={customRate}
-                                onChange={(e) => setCustomRate(e.target.value)}
+                                onChange={(e) => {
+                                    triggerHaptic();
+                                    setCustomRate(e.target.value);
+                                }}
                             />
                         )}
                     </div>
@@ -141,7 +167,10 @@ export default function Calculator() {
                             <Switch
                                 id="months-switch"
                                 checked={months === 6}
-                                onCheckedChange={(checked) => setMonths(checked ? 6 : 3)}
+                                onCheckedChange={(checked) => {
+                                    triggerHaptic();
+                                    setMonths(checked ? 6 : 3);
+                                }}
                                 className="data-[state=checked]:bg-primary"
                             />
                             <span className={`text-sm ${months === 6 ? "font-bold text-foreground" : "text-muted-foreground"}`}>6 Months</span>

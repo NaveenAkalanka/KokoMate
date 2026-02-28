@@ -7,8 +7,6 @@ import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
-    const router = useRouter();
-
     return (
         <div
             className="h-[100dvh] w-full bg-zinc-50 dark:bg-[#0A0E27] text-foreground flex flex-col selection:bg-primary/20"
@@ -23,7 +21,7 @@ export default function About() {
                 <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => router.back()}
+                    onClick={() => { window.location.href = "/"; }}
                     className="rounded-full shadow-sm bg-white dark:bg-zinc-900 border"
                 >
                     <ChevronLeft className="h-5 w-5" />
