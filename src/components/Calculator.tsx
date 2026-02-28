@@ -158,7 +158,7 @@ export default function Calculator() {
                             className="flex items-center justify-center gap-2 py-3 bg-[#FFDD00] text-black rounded-xl font-bold shadow active:scale-95 transition-all"
                         >
                             <span className="text-lg">☕</span>
-                            <span className="text-sm">Buy me a coffee</span>
+                            <span className="text-sm">Support the Project</span>
                         </a>
                     </div>
                 </div>
