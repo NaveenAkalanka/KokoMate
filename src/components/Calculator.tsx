@@ -47,7 +47,7 @@ export default function Calculator() {
     const activeRateStr = merchantRate === "custom" ? `${customRate || 0}%` : `${merchantRate}%`;
 
     return (
-        <div className="w-full flex-1 min-h-0 max-w-md mx-auto flex flex-col justify-center gap-4 pb-4 pt-4 h-full">
+        <div className="w-full flex-1 max-w-md mx-auto flex flex-col my-auto gap-4 pb-4 pt-4 min-h-min">
             {/* Top: Input Section */}
             <Card className="border-border shadow-sm flex-none">
                 <CardHeader className="pb-2 pt-3 flex flex-row items-center justify-between border-b mx-4 px-0 mb-3">

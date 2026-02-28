@@ -12,7 +12,7 @@ export default function Home() {
         paddingRight: "max(1rem, env(safe-area-inset-right))",
       }}
     >
-      <main className="flex-1 w-full flex flex-col min-h-0">
+      <main className="flex-1 w-full flex flex-col min-h-0 overflow-y-auto overflow-x-hidden">
         <Calculator />
       </main>
 
